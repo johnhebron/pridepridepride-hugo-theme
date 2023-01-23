@@ -1,0 +1,33 @@
+{{ define "main" }}
+
+{{ partial "page-title.html" . }}
+
+{{ with .Site.Data.holden }}
+<section class="contact-section section">
+  <div class="container">
+    <div class="row">
+      <!-- Contact Details -->
+      <div class="contact-details col-md-8">
+        <!-- <h3 class="mb-4">{{ .title | markdownify }}</h3> -->
+        {{ .content | markdownify }}
+      </div>
+      <!-- Contact Form -->
+      <div class="contact-form col-lg-4 ">
+        <img class="img-fluid" src="{{ .image_right | absURL }}"><br>
+        <img class="img-fluid" src="{{ .image_right2 | absURL }}">
+      </div>
+      <!-- ./End Contact Form -->
+    </div> <!-- end row -->
+  </div> <!-- end container -->
+</section>
+{{ end }}
+
+{{ if .Site.Data.contact.map.enable }}
+<div class="google-map">
+  <div id="map" data-latitude="{{ with .Site.Params.mapLatitude }} {{ . }} {{ end }}"
+    data-longitude="{{ with .Site.Params.mapLongitude }} {{ . }} {{ end }}"
+    data-marker="{{ with .Site.Params.mapMarker }} {{ . | absURL }} {{ end }}"></div>
+</div>
+{{ end }}
+
+{{ end }}
